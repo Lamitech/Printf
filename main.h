@@ -31,6 +31,7 @@ int _print_int(va_list arg);
 int int_length(unsigned int n);
 int get_exponent(int len);
 int _print_binary(va_list);
+int print_rot(va_list arguments, char *buf, unsigned int ibuf);
 int binary_len(unsigned int n);
 char *rev_string(char *);
 void _putbase(char *str);
