@@ -1,41 +1,35 @@
 #include "main.h"
 
 /**
- * print_rot - writes the string in ROT13
- * @arguments: input string
- * @buf: buffer pointer
- * @ibuf: index for buffer pointer
+ * print_R - prints a string with rot13 encryption.
+ * @arg: string to print.
  * Return: number of chars printed.
  */
-
-int print_rot(va_list arguments, char *buf, unsigned int ibuf)
+int print_R(va_list arg)
 {
-	char alf[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
-	char rot[] = "NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm";
-	char *str;
-	unsigned int i, j, k;
-	char nill[] = "(avyy)";
+	int i, j, cont = 0;
+	char *str = va_arg(arg, char *);
+	char alpha[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+	char rot13[] = "NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm";
 
-	str = va_arg(arguments, char *);
-	if (str == NULL)
-	{
-		for (i = 0; nill[i]; i++)
-			ibuf = handl_buf(buf, nill[i], ibuf);
-		return (6);
-	}
 	for (i = 0; str[i]; i++)
 	{
-		for (k = j = 0; alf[j]; j++)
+		for (j = 0; j < 52; j++)
 		{
-			if (str[i] == alf[j])
-			{
-				k = 1;
-				ibuf = handl_buf(buf, rot[j], ibuf);
-				break;
-			}
+			if (str[i] == alpha[j])
+			break;
 		}
-		if (k == 0)
-			ibuf = handl_buf(buf, str[i], ibuf);
+		if (str[i] == alpha[j])
+		{
+			_putchar(rot13[j]);
+			cont++;
+		}
+		else
+		{
+			_putchar(str[i]);
+			cont++;
+		}
 	}
-	return (i);
+
+	return (cont);
 }
